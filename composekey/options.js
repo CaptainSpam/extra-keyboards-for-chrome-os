@@ -79,11 +79,11 @@ function keyChanged() {
     }
   });
 }
-document.getElementById('key')
-  .addEventListener('change', keyChanged, {passive: true});
-document.getElementById('keepModifier')
-  .addEventListener('change', keyChanged, {passive: true});
-
+document.getElementById('key').addEventListener(
+    'change', keyChanged, {passive: true});
+document.getElementById('keepModifier').addEventListener('change', keyChanged, {
+  passive: true
+});
 
 /**
  * Stores the compose file in storage on changes.
@@ -103,27 +103,27 @@ async function updateComposeFile() {
 
 window.onunload = updateComposeFile;
 document.getElementById('composeFile')
-  .addEventListener('blur', updateComposeFile, {passive: true});
+    .addEventListener('blur', updateComposeFile, {passive: true});
 
 document.getElementById('loadComposeFileButton')
-  .addEventListener('click', () => {
-    let elem = document.getElementById('loadComposeFile');
-    elem.value = null;
-    elem.click();
-  }, {passive: true});
+    .addEventListener('click', () => {
+      let elem = document.getElementById('loadComposeFile');
+      elem.value = null;
+      elem.click();
+    }, {passive: true});
 
 document.getElementById('loadComposeFile')
-  .addEventListener('change', (event) => {
-    if (event.target.files.length == 0) return;
+    .addEventListener('change', (event) => {
+      if (event.target.files.length == 0) return;
 
-    let f = event.target.files[0];
-    let r = new FileReader();
-    r.onload = () => {
-      document.getElementById('composeFile').value = r.result;
-      updateComposeFile();
-    };
-    r.readAsText(f);
-  }, {passive: true});
+      let f = event.target.files[0];
+      let r = new FileReader();
+      r.onload = () => {
+        document.getElementById('composeFile').value = r.result;
+        updateComposeFile();
+      };
+      r.readAsText(f);
+    }, {passive: true});
 
 document.getElementById('saveComposeFile')
     .addEventListener('click', async () => {
@@ -142,10 +142,9 @@ document.getElementById('saveComposeFile')
       a.remove();
     }, {passive: true});
 
-document.getElementById('resetComposeFile')
-  .addEventListener('click', () => {
-    document.getElementById('confirmResetDialog').style.display = 'block';
-  }, {passive: true});
+document.getElementById('resetComposeFile').addEventListener('click', () => {
+  document.getElementById('confirmResetDialog').style.display = 'block';
+}, {passive: true});
 
 document.getElementById('confirmResetComposeFile')
     .addEventListener('click', async () => {
@@ -158,9 +157,9 @@ document.getElementById('confirmResetComposeFile')
     }, {passive: true});
 
 document.getElementById('cancelResetComposeFile')
-  .addEventListener('click', () => {
-    document.getElementById('confirmResetDialog').style.display = 'none';
-  }, {passive: true});
+    .addEventListener('click', () => {
+      document.getElementById('confirmResetDialog').style.display = 'none';
+    }, {passive: true});
 
 /**
  * Updates the compose file status.
